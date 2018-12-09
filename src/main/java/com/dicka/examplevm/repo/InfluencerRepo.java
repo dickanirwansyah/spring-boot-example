@@ -17,4 +17,10 @@ public interface InfluencerRepo extends JpaRepository<Influencer, String> {
 
     /** find by nick **/
     List<Influencer> findByEmailAndNick(String email, String nick);
+
+    /** list influencer by email **/
+    List<Influencer> findInfluencerByEmail(String email);
+
+    /** login influencer**/
+    Optional<Influencer> findByEmailAndPasswd(String email, String passwd);
 }

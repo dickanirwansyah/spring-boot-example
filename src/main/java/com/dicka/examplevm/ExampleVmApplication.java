@@ -21,6 +21,7 @@ public class ExampleVmApplication {
 	}
 }
 
+/**
 @Component
 @Service
 class CommadLine implements CommandLineRunner{
@@ -43,5 +44,17 @@ class CommadLine implements CommandLineRunner{
 		System.out.println("data : "+token);
 		Optional<Influencer> influencer = influencerRepo.findById("dickanirwansyah@gmail.com");
 		System.out.println("data : "+influencer);
+
+
+		Optional<Influencer> loginInfluencer = influencerRepo
+				.findByEmailAndPasswd("dickanirwansyah@gmail.com", "root");
+
+		if (loginInfluencer.isPresent()){
+			System.out.println("login data : "+loginInfluencer);
+		}else {
+			System.out.println("data login kosong");
+		}
 	}
 }
+
+**/

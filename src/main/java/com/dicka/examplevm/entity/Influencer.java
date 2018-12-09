@@ -5,11 +5,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Builder
@@ -30,4 +29,11 @@ public class Influencer implements Serializable{
     /** by update 1 **/
     @Column(name = "ST_VER")
     private int stVer;
+
+    /** many to many with spec result junction table INF_SPEC **/
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "INF_SPEC", joinColumns =
+            {@JoinColumn(name = "INF_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "SPEC_ID")})
+    private Set<Spec> specs = new HashSet<>();
 }
